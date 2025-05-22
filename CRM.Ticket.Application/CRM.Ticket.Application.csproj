@@ -10,8 +10,4 @@
     <ProjectReference Include="..\CRM.Ticket.Domain\CRM.Ticket.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
-
 </Project>
