@@ -1,7 +1,13 @@
 ﻿using System.Reflection;
 using CRM.Ticket.Application.Common.Abstractions.Users;
 using CRM.Ticket.Domain.Common.Entities;
+using CRM.Ticket.Domain.Entities.Attachments;
+using CRM.Ticket.Domain.Entities.Categories;
+using CRM.Ticket.Domain.Entities.Comments;
 using CRM.Ticket.Domain.Entities.OutboxMessages;
+using CRM.Ticket.Domain.Entities.TicketMetaDatas;
+using CRM.Ticket.Domain.Entities.Tickets;
+using CRM.Ticket.Domain.Entities.TicketStatusHistories;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRM.Ticket.Persistence.Databases;
@@ -12,6 +18,12 @@ public class ApplicationDbContext(
     : DbContext(options)
 {
     public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
+    public DbSet<TicketCard> Tickets => Set<TicketCard>();
+    public DbSet<TicketComment> TicketComments => Set<TicketComment>();
+    public DbSet<TicketAttachment> TicketAttachments => Set<TicketAttachment>();
+    public DbSet<TicketStatusHistory> TicketStatusHistory => Set<TicketStatusHistory>();
+    public DbSet<TicketCategory> TicketCategories => Set<TicketCategory>();
+    public DbSet<TicketMetadata> TicketMetadata => Set<TicketMetadata>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

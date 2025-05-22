@@ -1,9 +1,11 @@
 ﻿using System.Security.Cryptography;
 using CRM.Ticket.Application.Common.Abstractions.Users;
+using CRM.Ticket.Application.Common.Persistence.Repositories;
 using CRM.Ticket.Application.Common.Publishers;
 using CRM.Ticket.Application.Common.Services.Grids;
 using CRM.Ticket.Application.Common.Services.Outbox;
 using CRM.Ticket.Application.Common.Services.Synchronizer;
+using CRM.Ticket.Domain.Common.Events;
 using CRM.Ticket.Domain.Common.Options.Auth;
 using CRM.Ticket.Infrastructure.Contexts;
 using CRM.Ticket.Infrastructure.Publishers;
@@ -16,6 +18,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CRM.Ticket.Infrastructure.DI;
@@ -63,6 +66,8 @@ public static class DependencyInjection
 
     private static void AddSingeltonServices(this IServiceCollection services)
     {
+        services.TryAddSingleton<IExternalEventPublisher, RabbitMQEventPublisher>();
+
     }
 
     private static void AddScopedServices(this IServiceCollection services)
@@ -71,6 +76,7 @@ public static class DependencyInjection
         services.AddScoped<IEventPublisher, EventPublisher>();
         services.AddScoped<IOutboxService, OutboxService>();
         services.AddScoped<IOutboxProcessor, OutboxProcessor>();
+        
 
         services.AddScoped<IPermissionSynchronizer, PermissionSynchronizer>();
 

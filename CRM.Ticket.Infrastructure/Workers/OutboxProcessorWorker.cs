@@ -13,8 +13,7 @@ public class OutboxProcessorWorker : BackgroundService
 
     public OutboxProcessorWorker(
         IServiceScopeFactory scopeFactory,
-        ILogger<OutboxProcessorWorker> logger,
-        IConnectionMultiplexer redis)
+        ILogger<OutboxProcessorWorker> logger)
     {
         _scopeFactory = scopeFactory;
         _logger = logger;

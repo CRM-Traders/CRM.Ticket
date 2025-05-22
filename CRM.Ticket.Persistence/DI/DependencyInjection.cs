@@ -1,4 +1,5 @@
-﻿using CRM.Ticket.Application.Common.Abstractions.Mediators;
+﻿using CRM.EventStore.Persistence.Utils;
+using CRM.Ticket.Application.Common.Abstractions.Mediators;
 using CRM.Ticket.Application.Common.Persistence;
 using CRM.Ticket.Application.Common.Persistence.Repositories;
 using CRM.Ticket.Persistence.Databases;
@@ -26,10 +27,12 @@ public static class DependencyInjection
                 b => b.MigrationsAssembly(typeof(IdentityDbContext).Assembly.FullName)));
 
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped(typeof(IIdentityRepository<>), typeof(IdentityRepository<>));
+
         services.AddScoped<IOutboxRepository, OutboxRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+        services.AddScoped<IIdentityUnitOfWork, IdentityUnitOfWork>();
         return services;
     }
 }
