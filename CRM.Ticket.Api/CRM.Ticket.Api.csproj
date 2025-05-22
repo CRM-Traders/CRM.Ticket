@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
+		<PackageReference Include="Scalar.AspNetCore" Version="2.3.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\CRM.Ticket.Application\CRM.Ticket.Application.csproj" />
+    <ProjectReference Include="..\CRM.Ticket.Infrastructure\CRM.Ticket.Infrastructure.csproj" />
+    <ProjectReference Include="..\CRM.Ticket.Persistence\CRM.Ticket.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
